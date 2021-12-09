@@ -6,22 +6,22 @@ var score = 0;
 var currentHighScore = 0;
 
 // Countdown Logic
-var timer = 60;
-var countdown = function(){
-   // console.log(timer);
-    timer--; 
-    displayTimer.innerHTML = timer;
-    if (timer === -1) {
-        clearInterval(startCountdown)
+var startCountdown = function () {
+    var timer = 60;
+    var countdown = function () {
+        timer--;
+        displayTimer.innerHTML = timer;
+        if (timer === 0) {
+            clearInterval(startTimer);
+            endGame();
+        }
     };
+    var startTimer = setInterval(countdown, 1000);
 };
 
-
-
-    
-var createQuestion1 = function() {
+var createQuestion1 = function () {
     questionDisplayEl.removeChild(startButton);
-    setInterval(countdown, 1000);
+    startCountdown();
 
     var question1El = document.createElement("div");
     question1El.className = "questions";
@@ -32,7 +32,7 @@ var createQuestion1 = function() {
     q1a1El.className = "questions-button";
     q1a1El.textContent = "HyperText Markup Language";
     questionDisplayEl.appendChild(q1a1El);
-    
+
     var q1a2El = document.createElement("button");
     q1a2El.className = "questions-button";
     q1a2El.textContent = "HyperText Mechanical Language";
@@ -54,18 +54,18 @@ var createQuestion1 = function() {
         questionDisplayEl.removeChild(q1a2El);
         questionDisplayEl.removeChild(q1a3El);
         questionDisplayEl.removeChild(q1a4El);
-        score = score +10;
-        createQuestion2();  
+        score = score + 10;
+        createQuestion2();
     };
-    
-    var nextQuestionIncorrect = function() {
+
+    var nextQuestionIncorrect = function () {
         questionDisplayEl.removeChild(question1El);
         questionDisplayEl.removeChild(q1a1El);
         questionDisplayEl.removeChild(q1a2El);
         questionDisplayEl.removeChild(q1a3El);
         questionDisplayEl.removeChild(q1a4El);
         console.log("wrong")
-        timer = timer -10;
+        timer = timer - 10;
         createQuestion2();
     };
 
@@ -75,18 +75,18 @@ var createQuestion1 = function() {
     q1a4El.addEventListener("click", nextQuestionIncorrect);
 };
 
-var createQuestion2 = function() {
-    
+var createQuestion2 = function () {
+
     var question2El = document.createElement("div");
     question2El.className = "questions";
     question2El.textContent = "What symbol is used in CSS to reference an ID tag";
     questionDisplayEl.appendChild(question2El);
-    
+
     var q2a1El = document.createElement("button");
     q2a1El.className = "questions-button";
     q2a1El.textContent = ".";
     questionDisplayEl.appendChild(q2a1El);
-    
+
     var q2a2El = document.createElement("button");
     q2a2El.className = "questions-button";
     q2a2El.textContent = "/";
@@ -109,16 +109,16 @@ var createQuestion2 = function() {
         questionDisplayEl.removeChild(q2a3El);
         questionDisplayEl.removeChild(q2a4El);
         score = score + 10;
-        createQuestion3();    
+        createQuestion3();
     };
-    
-    var nextQuestionIncorrect = function() {
+
+    var nextQuestionIncorrect = function () {
         questionDisplayEl.removeChild(question2El);
         questionDisplayEl.removeChild(q2a1El);
         questionDisplayEl.removeChild(q2a2El);
         questionDisplayEl.removeChild(q2a3El);
         questionDisplayEl.removeChild(q2a4El);
-        timer = timer -10;
+        timer = timer - 10;
         createQuestion3();
     };
 
@@ -128,18 +128,18 @@ var createQuestion2 = function() {
     q2a4El.addEventListener("click", nextQuestionIncorrect);
 };
 
-var createQuestion3 = function() {
+var createQuestion3 = function () {
 
     var question3El = document.createElement("div");
     question3El.className = "questions";
     question3El.textContent = "What does DOM stand for.";
     questionDisplayEl.appendChild(question3El);
-    
+
     var q3a1El = document.createElement("button");
     q3a1El.className = "questions-button";
     q3a1El.textContent = "Div Object Modulation";
     questionDisplayEl.appendChild(q3a1El);
-    
+
     var q3a2El = document.createElement("button");
     q3a2El.className = "questions-button";
     q3a2El.textContent = "Document Object Module";
@@ -161,17 +161,17 @@ var createQuestion3 = function() {
         questionDisplayEl.removeChild(q3a2El);
         questionDisplayEl.removeChild(q3a3El);
         questionDisplayEl.removeChild(q3a4El);
-        score = score +10;
-        createHighScore();   
+        score = score + 10;
+        createHighScore();
     };
-    
-    var nextQuestionIncorrect = function() {
+
+    var nextQuestionIncorrect = function () {
         questionDisplayEl.removeChild(question3El);
         questionDisplayEl.removeChild(q3a1El);
         questionDisplayEl.removeChild(q3a2El);
         questionDisplayEl.removeChild(q3a3El);
         questionDisplayEl.removeChild(q3a4El);
-        timer = timer -10;
+        timer = timer - 10;
         createHighScore();
         createQuestion4();
     };
@@ -182,23 +182,26 @@ var createQuestion3 = function() {
     q3a4El.addEventListener("click", nextQuestionIncorrect);
 };
 
-var createQuestion4 = function() {
+var createQuestion4 = function () {
     console.log(timer);
     console.log(score);
 }
 
-var quizerName = function() {
+var quizerName = function () {
     value = window.prompt("What's Your Name")
     return value;
 }
-var createHighScore = function() {
+var createHighScore = function () {
     window.alert(quizerName() + " has a High Score of " + score)
     if (score > currentHighScore) {
         localStorage.setItem("currentHighScore", score)
         localStorage.setItem("name", quizerName)
     }
-} 
+}
 
+var endGame = function () {
+    window.alert("GameOver");
+}
 
 
 
