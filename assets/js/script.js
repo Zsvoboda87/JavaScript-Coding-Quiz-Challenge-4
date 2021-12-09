@@ -1,10 +1,11 @@
 var timer = 60;
 var startButton = document.querySelector("#start-button");
 var questionDisplayEl = document.querySelector("#question-display");
-
-
+var score = 0;
 
 var createQuestion1 = function() {
+    questionDisplayEl.removeChild(startButton);
+
     var question1El = document.createElement("div");
     question1El.className = "questions";
     question1El.textContent = "Who is your favorite Mario character?";
@@ -30,7 +31,32 @@ var createQuestion1 = function() {
     q1a4El.textContent = "Wario";
     questionDisplayEl.appendChild(q1a4El);
 
+    var nextQuestionCorrect = function () {
+        questionDisplayEl.removeChild(question1El);
+        questionDisplayEl.removeChild(q1a1El);
+        questionDisplayEl.removeChild(q1a2El);
+        questionDisplayEl.removeChild(q1a3El);
+        questionDisplayEl.removeChild(q1a4El);
+        console.log("right");
+        createQuestion2();    
+    };
+    
+    var nextQuestionIncorrect = function() {
+        questionDisplayEl.removeChild(question1El);
+        questionDisplayEl.removeChild(q1a1El);
+        questionDisplayEl.removeChild(q1a2El);
+        questionDisplayEl.removeChild(q1a3El);
+        questionDisplayEl.removeChild(q1a4El);
+        console.log("wrong")
+        createQuestion2();
+    };
+
+    q1a1El.addEventListener("click", nextQuestionCorrect);
+    q1a2El.addEventListener("click", nextQuestionIncorrect);
+    q1a3El.addEventListener("click", nextQuestionIncorrect);
+    q1a4El.addEventListener("click", nextQuestionIncorrect);
 };
+
 
 var createQuestion2 = function() {
     var question2El = document.createElement("div");
@@ -59,6 +85,7 @@ var createQuestion2 = function() {
     questionDisplayEl.appendChild(q2a4El);
 
 };
+
 
 
 
