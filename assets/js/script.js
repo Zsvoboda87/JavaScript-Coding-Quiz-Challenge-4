@@ -199,8 +199,11 @@ var createHighScore = function () {
     }
 }
 
+var empty = [];
 var endGame = function () {
     window.alert("GameOver");
+    questionDisplayEl.innerHTML = empty;
+    timer = 0;
 }
 
 
