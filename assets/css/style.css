@@ -37,7 +37,7 @@ main {
     align-content: center;
 }
 
-#countdown {
+.countdown-highscore {
     padding: 10px;
     font-size: 50px;
     height:60px;
@@ -46,6 +46,8 @@ main {
     border-radius: 10px;
     margin-top: 20px;
 }
+
+
 
 .layout {
     display: flex;
@@ -92,4 +94,26 @@ main {
 
 #start-button:hover {
     background-color: darkgray;
+}
+
+footer {
+    text-align: right;
+    padding: 80px;
+    padding-right: 75px;
+    font-size: 18px;
+    background-color: lightgray;
+}
+
+footer a {
+    text-decoration: none;
+    font-style: bold;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    padding: 3px;
+}
+
+footer a:hover {
+    background-color:#070707;
+    color: white;
 }
