@@ -1,25 +1,26 @@
 var startButton = document.querySelector("#start-button");
 var questionDisplayEl = document.querySelector("#question-display");
 var displayScore = document.querySelector("#HighScore");
+var displayLastScore = document.querySelector("#lastscore")
 var displayTimer = document.querySelector("#countdown");
-var score = 0;
 var currentHighScore = localStorage.getItem("currentHighScore");
 var highScoreName = localStorage.getItem("highScoreName");
 var timer = 60;
-
-
+var score = 0;
+var playerId =0;
 
 var displayHighScore = function () {
+    if(highScoreName === null) {
+        highScoreName = "N/A"
+    }
+    if (currentHighScore === null) {
+        currentHighScore = 0
+    }
     var highScoreEl = document.createElement("div");
-    highScoreEl.className = "countdown-highscore";
-    highScoreEl.textContent = highScoreName;
+    highScoreEl.className = "highscore";
+    highScoreEl.innerHTML = highScoreName + ": " + currentHighScore;
     displayScore.appendChild(highScoreEl);
-
-    var highScoreEl2 = document.createElement("div");
-    highScoreEl2.className = "countdown-highscore";
-    highScoreEl2.textContent = currentHighScore;
-    displayScore.appendChild(highScoreEl2);
-}
+    }
 displayHighScore();
 
 var startCountdown = function () {
@@ -34,10 +35,21 @@ var startCountdown = function () {
     var startTimer = setInterval(countdown, 1000);
 };
 
-
-var createQuestion1 = function () {
+var removeStart = function () {
     questionDisplayEl.removeChild(startButton);
-    // setInterval(myTimer.countDown(), 1000);
+}
+
+var reStart = function () {
+    // questionDisplayEl.innerHTML = "";
+    // timer = 60;
+    // score = 0;
+    
+    // createQuestion1 ();
+    // playerId++;
+    location.reload();
+}
+var createQuestion1 = function () {
+    
      startCountdown();
 
     var question1El = document.createElement("div");
@@ -304,7 +316,6 @@ var createQuestion5 = function () {
 };
 
 
-
 var quizerName = function () {
     questionDisplayEl.innerHTML = empty;
     value = window.prompt("Enter Your Initials")
@@ -329,9 +340,27 @@ var endGame = function () {
     questionDisplayEl.innerHTML = empty;
     displayTimer.innerHTML = 0;
     createHighScore();
+    finalscore();
+    playAgain();
+}
+
+var finalscore = function() {
+    var currentScore = localStorage.getItem("currentScore");
+    var currentName = localStorage.getItem("currentName");
+    var currentScoreEl = document.createElement("div");
+    currentScoreEl.className ="highscore";
+    currentScoreEl.innerHTML = currentName + ": " + currentScore
+    displayLastScore.appendChild(currentScoreEl)
+}
+
+playAgain = function () {
+    var playagain = document.createElement("button");
+    playagain.className = "questions-button";
+    playagain.textContent = "Try Again";
+    questionDisplayEl.appendChild(playagain); 
+    playagain.addEventListener("click", reStart);   
 }
 
 
-
-
 startButton.addEventListener("click", createQuestion1);
+startButton.addEventListener("click", removeStart);
