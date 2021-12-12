@@ -10,11 +10,11 @@ This is a learning project assigned to demonstrate the knowledge I've acquired o
 
 
 ## Website
-https://zsvoboda87.github.io/JavaScript-Coding-Quiz-Challenge-4/
+ https://zsvoboda87.github.io/JavaScript-Coding-Quiz-Challenge-4/
 
 ## Contribution
 Zsvoboda87 
 
 
 ## ScreenShot
-Screen: ![Screenshot](/assests/Screenshot.png)
+Screen: ![Screenshot](./assests/Screenshot.png)
