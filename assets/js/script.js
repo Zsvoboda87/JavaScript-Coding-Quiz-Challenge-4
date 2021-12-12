@@ -5,23 +5,31 @@ var displayLastScore = document.querySelector("#lastscore")
 var displayTimer = document.querySelector("#countdown");
 var currentHighScore = localStorage.getItem("currentHighScore");
 var highScoreName = localStorage.getItem("highScoreName");
+
+var highScoreEl = document.createElement("div");
+highScoreEl.className = "highscore";
+
 var timer = 60;
 var score = 0;
 var playerId =0;
 
 var displayHighScore = function () {
+    var currentHighScore = localStorage.getItem("currentHighScore");
+    var highScoreName = localStorage.getItem("highScoreName");  
+
+    
     if(highScoreName === null) {
         highScoreName = "N/A"
     }
     if (currentHighScore === null) {
         currentHighScore = 0
     }
-    var highScoreEl = document.createElement("div");
-    highScoreEl.className = "highscore";
+
     highScoreEl.innerHTML = highScoreName + ": " + currentHighScore;
     displayScore.appendChild(highScoreEl);
     }
 displayHighScore();
+
 
 var startCountdown = function () {
     var countdown = function () {
@@ -325,12 +333,11 @@ var quizerName = function () {
 var createHighScore = function () {
     playerInitials = quizerName()
     window.alert(playerInitials + " has a score of " + score)
+    localStorage.setItem("currentScore", score)
+    localStorage.setItem("currentName", playerInitials)
     if (score > currentHighScore) {
     localStorage.setItem("currentHighScore", score)
     localStorage.setItem("highScoreName", playerInitials)
-    } else {
-        localStorage.setItem("currentScore", score)
-        localStorage.setItem("currentName", playerInitials)
     }
 }
 
@@ -342,11 +349,14 @@ var endGame = function () {
     createHighScore();
     finalscore();
     playAgain();
+    displayHighScore();
+    
 }
 
 var finalscore = function() {
     var currentScore = localStorage.getItem("currentScore");
     var currentName = localStorage.getItem("currentName");
+
     var currentScoreEl = document.createElement("div");
     currentScoreEl.className ="highscore";
     currentScoreEl.innerHTML = currentName + ": " + currentScore
