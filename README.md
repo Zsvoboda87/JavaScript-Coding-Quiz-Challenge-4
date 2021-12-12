@@ -17,4 +17,5 @@ Zsvoboda87
 
 
 ## ScreenShot
-Screen: ![Screenshot](./assests/Screenshot.png)
+Screen: ![Screenshot](/assets/Screenshot.png)
+
