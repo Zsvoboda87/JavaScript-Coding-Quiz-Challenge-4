@@ -40,13 +40,13 @@ var removeStart = function () {
 }
 
 var reStart = function () {
-    // questionDisplayEl.innerHTML = "";
-    // timer = 60;
-    // score = 0;
+    questionDisplayEl.innerHTML = "";
+    timer = 60;
+    score = 0;
     
-    // createQuestion1 ();
-    // playerId++;
-    location.reload();
+    createQuestion1 ();
+    playerId++;
+    
 }
 var createQuestion1 = function () {
     
